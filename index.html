@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basil Elasdig | ساحة المعركة - البقاء للأقوى</title>
+  
+  <!-- خطوط عربية عصرية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- مكتبة أيقونات FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #ff9800;
+      --primary-hover: #f57c00;
+      --accent: #ff3d00;
+      --bg-dark: #0a0b0e;
+      --bg-card: #14161c;
+      --bg-card-hover: #1c1f28;
+      --text-main: #ffffff;
+      --text-muted: #a0a6b5;
+      --border-color: rgba(255, 152, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* شريط التنقل النحيف والاسم جنب بعض */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 11, 14, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 6px 5%;
+      height: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      direction: ltr;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .custom-emblem {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(255, 152, 0, 0.45));
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #000;
+      padding: 5px 14px;
+      border-radius: 5px;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    /* قسم البطل Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 95px 5% 60px;
+      background: linear-gradient(to bottom, rgba(10, 11, 14, 0.58), var(--bg-dark)),
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    #sparks-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 152, 0, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #d1d5db;
+      margin-bottom: 35px;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .store-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #14161c;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .store-btn:hover {
+      border-color: var(--primary);
+      background: #1f232d;
+      transform: translateY(-3px);
+    }
+
+    .store-btn i {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .store-btn-text {
+      text-align: right;
+      line-height: 1.2;
+    }
+
+    .store-btn-text small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .store-btn-text strong {
+      font-size: 1.05rem;
+    }
+
+    .qr-trigger-btn {
+      background: transparent;
+      border: 1px dashed var(--primary);
+      color: var(--primary);
+      padding: 10px 22px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .qr-trigger-btn:hover {
+      background: rgba(255, 152, 0, 0.12);
+    }
+
+    /* الأقسام العامة */
+    section {
+      padding: 80px 5%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-header h2 span {
+      color: var(--primary);
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* قسم الشخصيات (بدون صور) */
+    .characters-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 35px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 35px;
+      align-items: center;
+    }
+
+    .char-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .char-tab {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      padding: 18px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: right;
+      color: #fff;
+    }
+
+    .char-tab.active, .char-tab:hover {
+      background: rgba(255, 152, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    .char-display {
+      background: #0d0f14;
+      border:: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 30px;
+      border: 1px solid var(--border-color);
+    }
+
+    .char-info h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .char-skill {
+      display: inline-block;
+      background: rgba(255, 61, 0, 0.15);
+      color: #ff7043;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .stat-row {
+      margin-top: 14px;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .stat-bar {
+      width: 100%;
+      height: 8px;
+      background: #252834;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .stat-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* ترسانة الأسلحة */
+    .filter-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 8px 22px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+
+    .weapons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    .weapon-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .weapon-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+    }
+
+    .weapon-img-box {
+      position: relative;
+      height: 185px;
+      overflow: hidden;
+      background: #0f1116;
+    }
+
+    .weapon-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .weapon-type {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .weapon-body {
+      padding: 20px;
+    }
+
+    .weapon-body h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .weapon-body p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    /* الخرائط والأخبار */
+    .maps-grid, .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .map-card, .news-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .map-card { height: 300px; position: relative; }
+    .map-card img, .news-card img { width: 100%; height: 100%; object-fit: cover; }
+    .news-card img { height: 190px; }
+
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 11, 14, 0.95) 15%, rgba(10, 11, 14, 0.2) 70%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+    }
+
+    .map-tag { color: var(--primary); font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+    .map-overlay h3 { font-size: 1.5rem; margin-bottom: 6px; }
+    .map-overlay p { color: #d1d5db; font-size: 0.9rem; }
+
+    .news-content { padding: 20px; }
+    .news-date { color: var(--primary); font-size: 0.85rem; font-weight: 700; }
+    .news-content h3 { margin: 8px 0; font-size: 1.2rem; }
+    .news-content p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* النافذة المنبثقة QR Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 18px;
+      padding: 35px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      left: 18px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .qr-container {
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      display: inline-block;
+      margin: 20px 0;
+    }
+
+    .qr-container img { width: 190px; height: 190px; display: block; }
+
+    .qr-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .qr-switch button {
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .qr-switch button.active { background: var(--primary); color: #000; }
+
+    /* التذييل */
+    footer {
+      background: #060709;
+      border-top: 1px solid var(--border-color);
+      padding: 45px 5% 30px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover { background: var(--primary); color: #000; }
+
+    .dev-credits {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .dev-credits strong { color: var(--primary); }
+
+    @media (max-width: 850px) {
+      nav ul { display: none; }
+      .characters-wrapper { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي النحيف -->
+  <header>
+    <a href="#" class="logo">
+      <svg class="custom-emblem" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fireGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFB300"/>
+            <stop offset="100%" stop-color="#FF3D00"/>
+          </linearGradient>
+        </defs>
+        <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" fill="#14161C" stroke="url(#fireGrad)" stroke-width="3.5"/>
+        <path d="M32 13C32 13 43 24 43 34C43 40.5 38 46 32 46C26 46 21 40.5 21 34C21 29 24.5 24.5 26.5 22.5C26 26 28 28 30 28C28.5 23 32 13 32 13Z" fill="url(#fireGrad)"/>
+        <polygon points="32,27 36,36 32,42 28,36" fill="#0A0B0E"/>
+      </svg>
+      <span class="logo-text" style="color: #fff;">BASIL <span>ELASDIG</span></span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#characters">الشخصيات</a></li>
+        <li><a href="#weapons">الأسلحة</a></li>
+        <li><a href="#maps">الخرائط والأنهار</a></li>
+        <li><a href="#news">التحديثات</a></li>
+      </ul>
+    </nav>
+    <button class="nav-btn" onclick="openModal()">تحميل الآن</button>
+  </header>
+
+  <!-- قسم البطل -->
+  <section class="hero">
+    <canvas id="sparks-canvas"></canvas>
+    <div class="hero-content">
+      <div class="badge">🔥 إصدار Basil Elasdig القتالي</div>
+      <h1>المعركة الحاسمة <span>البقاء للأقوى</span></h1>
+      <p>اهبط بالمظلة في جزيرة مليئة بالأنهار، الغابات، والمواجهات النارية لمدة 10 دقائق. اختر شخصيتك، جهّز أسلحتك، وكن الناجي الأخير!</p>
+      
+      <div class="store-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.dts.freefireth" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <i class="fa-brands fa-google-play"></i>
+          <div class="store-btn-text">
+            <small>احصل عليه من</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+
+        <a href="https://apps.apple.com/app/id1300146617" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <i class="fa-brands fa-apple"></i>
+          <div class="store-btn-text">
+            <small>حمّله من</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+      </div>
+
+      <button class="qr-trigger-btn" onclick="openModal()">
+        <i class="fa-solid fa-qrcode"></i> امسح رمز QR للتحميل السريع على هاتفك
+      </button>
+    </div>
+  </section>
+
+  <!-- قسم الشخصيات (بدون صور) -->
+  <section id="characters">
+    <div class="section-header">
+      <h2>أبطال <span>ساحة المعركة</span></h2>
+      <p>لكل شخصية مهارة قتالية فريدة تقلب موازين المواجهة لصالح فريقك</p>
+    </div>
+
+    <div class="characters-wrapper">
+      <div class="char-selector" id="char-tabs"></div>
+      <div class="char-display" id="char-display"></div>
+    </div>
+  </section>
+
+  <!-- ترسانة الأسلحة -->
+  <section id="weapons">
+    <div class="section-header">
+      <h2>ترسانة <span>الأسلحة القتالية</span></h2>
+      <p>تشكيلة واسعة من البنادق الهجومية والقناصات الدقيقة للسيطرة على جميع المسافات</p>
+    </div>
+
+    <div class="filter-btns">
+      <button class="filter-btn active" onclick="filterWeapons('all', this)">الكل</button>
+      <button class="filter-btn" onclick="filterWeapons('ar', this)">بنادق هجومية (AR)</button>
+      <button class="filter-btn" onclick="filterWeapons('sniper', this)">قناصات (Sniper)</button>
+      <button class="filter-btn" onclick="filterWeapons('smg', this)">رشاشات خفيفة (SMG)</button>
+    </div>
+
+    <div class="weapons-grid" id="weapons-grid">
+      <div class="weapon-card" data-category="ar">
+        <div class="weapon-img-box">
+          <span class="weapon-type">بندقية هجومية</span>
+          <img src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80" alt="AK-47">
+        </div>
+        <div class="weapon-body">
+          <h3>AK-47 المطور</h3>
+          <p>ضرر هائل في المسافات المتوسطة والبعيدة مع قوة اختراق عالية للدروع.</p>
+          <div class="stat-label"><span>الضرر</span><span>88%</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width: 88%;"></div></div>
+        </div>
+      </div>
+
+      <div class="weapon-card" data-category="sniper">
+        <div class="weapon-img-box">
+          <span class="weapon-type">قناصة</span>
+          <img src="7.png" alt="AWM" loading="lazy">
+        </div>
+        <div class="weapon-body">
+          <h3>قناصة AWM</h3>
+          <p>ملك القنص من المسافات البعيدة؛ طلقة واحدة دقيقة كفيلة بحسم المواجهة.</p>
+          <div class="stat-label"><span>المدى والدقة</span><span>96%</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width: 96%;"></div></div>
+        </div>
+      </div>
+
+      <div class="weapon-card" data-category="smg">
+        <div class="weapon-img-box">
+          <span class="weapon-type">رشاش خفيف</span>
+          <img src="https://images.unsplash.com/photo-1585589266882-2cb137ba7db6?auto=format&fit=crop&w=800&q=80" alt="MP40">
+        </div>
+        <div class="weapon-body">
+          <h3>رشاش MP40</h3>
+          <p>أسرع معدل إطلاق نار في الاشتباكات القريبة داخل المباني الضيقة.</p>
+          <div class="stat-label"><span>سرعة الإطلاق</span><span>94%</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width: 94%;"></div></div>
+        </div>
+      </div>
+
+      <div class="weapon-card" data-category="ar">
+        <div class="weapon-img-box">
+          <span class="weapon-type">بندقية تكتيكية</span>
+          <img src="67.png" alt="M4A1" loading="lazy">
+        </div>
+        <div class="weapon-body">
+          <h3>بندقية M4A1</h3>
+          <p>توازن مثالي بين الثبات والدقة وسرعة إعادة التلقيم في جميع الظروف.</p>
+          <div class="stat-label"><span>الثبات</span><span>85%</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width: 85%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- الخرائط والأنهار -->
+  <section id="maps">
+    <div class="section-header">
+      <h2>خرائط <span>القتال والأنهار</span></h2>
+      <p>استكشف تضاريس متنوعة تشمل الأنهار الواسعة، الجسور، والغابات الكثيفة</p>
+    </div>
+
+    <div class="maps-grid">
+      <div class="map-card">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Bermuda">
+        <div class="map-overlay">
+          <span class="map-tag">🌊 تضاريس مائية وجسور</span>
+          <h3>وادي برمودا (Bermuda)</h3>
+          <p>أنهار عريضة تفصل بين ضفتي الجزيرة مع جسور استراتيجية للمواجهات الحاسمة.</p>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=900&q=80" alt="Purgatory">
+        <div class="map-overlay">
+          <span class="map-tag">🌲 غابات وشلالات</span>
+          <h3>أرض التطهير (Purgatory)</h3>
+          <p>مسارات نهرية متشعبة وشلالات توفر غطاءً طبيعياً للتسلل والكمائن الذكية.</p>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Kalahari">
+        <div class="map-overlay">
+          <span class="map-tag">🏜️ كثبان ومرتفعات</span>
+          <h3>صحراء كالاهاري (Kalahari)</h3>
+          <p>تضاريس جبلية وعرة وأودية جافة مثالية لمعارك القناصة من المرتفعات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- التحديثات -->
+  <section id="news">
+    <div class="section-header">
+      <h2>آخر <span>الأخبار والتحديثات</span></h2>
+      <p>تابع أحدث الفعاليات والبطولات والهدايا المجانية داخل اللعبة</p>
+    </div>
+
+    <div class="news-grid">
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80" alt="News 1">
+        <div class="news-content">
+          <span class="news-date">تحديث الموسم الجديد</span>
+          <h3>انطلاق بطولة النخبة للفرق</h3>
+          <p>كوّن فريقك المكون من 4 لاعبين ونافس على الجوائز الحصرية والأزياء النادرة.</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="News 2">
+        <div class="news-content">
+          <span class="news-date">إضافات الترسانة</span>
+          <h3>تحسينات شاملة على دقة التصويب</h3>
+          <p>توازن جديد للأسلحة في وضع كلاش سكواد مع إضافات تكتيكية متطورة.</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80" alt="News 3">
+        <div class="news-content">
+          <span class="news-date">فعالية مجانية</span>
+          <h3>سجّل دخولك واحصل على حزمة المحارب</h3>
+          <p>أكمل المهام اليومية في الخرائط النهرية لفتح سكنات أسلحة مجانية بالكامل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- النافذة المنبثقة للتحميل و QR Code -->
+  <div class="modal" id="download-modal">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <h2 style="color: var(--primary); margin-bottom: 6px;">حمّل اللعبة الآن</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">امسح الرمز بكاميرا هاتفك للانتقال مباشرة لصفحة التطبيق في المتجر</p>
+
+      <div class="qr-switch" style="margin-top: 15px;">
+        <button id="btn-qr-android" class="active" onclick="setQR('android')">
+          <i class="fa-brands fa-google-play"></i> Google Play
+        </button>
+        <button id="btn-qr-ios" onclick="setQR('ios')">
+          <i class="fa-brands fa-apple"></i> App Store
+        </button>
+      </div>
+
+      <div class="qr-container">
+        <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.dts.freefireth" alt="QR Code">
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://play.google.com/store/apps/details?id=com.dts.freefireth" target="_blank" rel="noopener noreferrer" class="nav-btn" style="flex: 1; text-align: center;">
+          فتح Google Play
+        </a>
+        <a href="https://apps.apple.com/app/id1300146617" target="_blank" rel="noopener noreferrer" class="nav-btn" style="flex: 1; text-align: center; background: #fff; color: #000;">
+          فتح App Store
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- التذييل -->
+  <footer>
+    <a href="#" class="logo" style="justify-content: center; margin-bottom: 12px;">
+      <svg class="custom-emblem" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" fill="#14161C" stroke="#FF9800" stroke-width="3.5"/>
+        <path d="M32 13C32 13 43 24 43 34C43 40.5 38 46 32 46C26 46 21 40.5 21 34C21 29 24.5 24.5 26.5 22.5C26 26 28 28 30 28C28.5 23 32 13 32 13Z" fill="#FF9800"/>
+      </svg>
+      <span class="logo-text" style="color: #fff;">BASIL <span>ELASDIG</span></span>
+    </a>
+    <p>تجربة الباتل رويال الأسرع والأكثر تشويقاً على الهواتف الذكية</p>
+    
+    <div class="social-links">
+      <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://discord.com" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+
+    <div class="dev-credits">
+      <p>تطوير وتصميم شركة: <strong>Basil Elasdig</strong> | جميع الحقوق محفوظة &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // بيانات الشخصيات (بدون صور)
+    const characters = [
+      {
+        name: "ألوك (DJ Alok)",
+        role: "قائد الدعم والسرعة",
+        skill: "إيقاع الحياة: هالة تزيد سرعة الحركة وتستعيد نقاط الصحة",
+        desc: "مقاتل وموسيقي عالمي يستخدم موجاته الصوتية لإنقاذ زملائه في أصعب اللحظات وزيادة سرعتهم أثناء الاشتباك.",
+        speed: 95,
+        healing: 90,
+        attack: 78
+      },
+      {
+        name: "كيلي (Kelly)",
+        role: "عدّاءة الهجوم السريع",
+        skill: "الاندفاع القاتل: زيادة سرعة الركض مع طلقة أولى مضاعفة الضرر",
+        desc: "أسرع عدّاءة في الجزيرة، تتفوق في الالتفاف حول الأعداء وعبور الأنهار والجسور قبل وصول الخصوم.",
+        speed: 99,
+        healing: 70,
+        attack: 86
+      },
+      {
+        name: "كرونو (Chrono)",
+        role: "مدافع الدرع الزمني",
+        skill: "حاجز الزمن: درع طاقة يمنع طلقات الأعداء بشكل فوري",
+        desc: "محارب قادم من بُعد آخر يمتلك تكنولوجيا متقدمة لحماية نفسه وفريقه في المناطق المكشوفة.",
+        speed: 84,
+        healing: 85,
+        attack: 92
+      }
+    ];
+
+    const tabsContainer = document.getElementById('char-tabs');
+    const displayContainer = document.getElementById('char-display');
+
+    function renderCharacter(index) {
+      const char = characters[index];
+      document.querySelectorAll('.char-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      displayContainer.innerHTML = `
+        <div class="char-info">
+          <span style="color: var(--text-muted); font-size: 0.9rem;">${char.role}</span>
+          <h3>${char.name}</h3>
+          <div class="char-skill"><i class="fa-solid fa-bolt"></i> ${char.skill}</div>
+          <p style="color: #d1d5db; font-size: 0.95rem; margin-bottom: 20px;">${char.desc}</p>
+          
+          <div class="stat-row">
+            <div class="stat-label"><span>السرعة والحركة</span><span>${char.speed}%</span></div>
+            <div class="stat-bar"><div class="stat-fill" style="width: ${char.speed}%"></div></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label"><span>الدعم والنجاة</span><span>${char.healing}%</span></div>
+            <div class="stat-bar"><div class="stat-fill" style="width: ${char.healing}%"></div></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label"><span>القوة الهجومية</span><span>${char.attack}%</span></div>
+            <div class="stat-bar"><div class="stat-fill" style="width: ${char.attack}%"></div></div>
+          </div>
+        </div>
+      `;
+    }
+
+    characters.forEach((char, index) => {
+      const btn = document.createElement('button');
+      btn.className = `char-tab ${index === 0 ? 'active' : ''}`;
+      btn.onclick = () => renderCharacter(index);
+      btn.innerHTML = `
+        <div>
+          <strong style="display: block; font-size: 1.1rem; color: #fff;">${char.name}</strong>
+          <small style="color: var(--text-muted);">${char.role}</small>
+        </div>
+      `;
+      tabsContainer.appendChild(btn);
+    });
+    renderCharacter(0);
+
+    // تصفية الأسلحة
+    function filterWeapons(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.weapon-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // نافذة QR والمتاجر
+    const modal = document.getElementById('download-modal');
+    const qrImg = document.getElementById('qr-code-img');
+    const playStoreUrl = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
+    const appStoreUrl = "https://apps.apple.com/app/id1300146617";
+
+    function openModal() { modal.classList.add('open'); }
+    function closeModal() { modal.classList.remove('open'); }
+
+    function setQR(platform) {
+      const btnAndroid = document.getElementById('btn-qr-android');
+      const btnIos = document.getElementById('btn-qr-ios');
+
+      if (platform === 'android') {
+        btnAndroid.classList.add('active');
+        btnIos.classList.remove('active');
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(playStoreUrl)}`;
+      } else {
+        btnIos.classList.add('active');
+        btnAndroid.classList.remove('active');
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(appStoreUrl)}`;
+      }
+    }
+
+    window.onclick = function(e) { if (e.target === modal) closeModal(); };
+
+    // الشرارات النارية
+    const canvas = document.getElementById('sparks-canvas');
+    const ctx = canvas.getContext('2d');
+    let sparks = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 45; i++) {
+      sparks.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2.5 + 1,
+        vy: -(Math.random() * 1.5 + 0.5),
+        vx: (Math.random() - 0.5) * 0.8,
+        alpha: Math.random()
+      });
+    }
+
+    function animateSparks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      sparks.forEach(s => {
+        s.y += s.vy;
+        s.x += s.vx;
+        if (s.y < 0) {
+          s.y = canvas.height;
+          s.x = Math.random() * canvas.width;
+        }
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 152, 0, ${s.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animateSparks);
+    }
+    animateSparks();
+  </script>
+</body>
+</html>
